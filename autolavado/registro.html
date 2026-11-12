@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Wash-FF</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-cuadro"></div>
+        <h1>CW-FF</h1>
+    </div>
+    <nav>
+        <a href="index.html">INICIO</a>
+        <a href="servicios.html">SERVICIOS</a>
+        <a href="horarios.html">HORARIOS</a>
+        <a href="accesorios.html">ACCESORIOS</a>
+        <a href="registro.html">REGISTRO</a>
+    </nav>
+</header>
+
+<section id="registro" class="seccion">
+    <h2>Registro de clientes</h2>
+    <p>Completa el siguiente formulario para registrar tus datos y solicitar información sobre nuestros servicios, puedes contactarnos al 4348597847 y a cars@gmail.com</p>
+    <form action="#" method="get" class="formulario">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+
+        <label for="telefono">Número de teléfono</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="Escribe tu teléfono" required>
+
+        <label for="modelo">Modelo y año del carro</label>
+        <input type="text"x id="modelo" name="modelo" placeholder="Escribe año y modelo del carro" required>
+
+        <label for="servicio">Servicio de interés</label>
+        <select id="servicio" name="servicio" required>
+            <option value="">Selecciona un servicio</option>
+            <option value="basico">Plan Básico - $150.00</option>
+            <option value="mejor-valor">Mejor valor - $300.00</option>
+            <option value="exclusivo">Exclusivo - $500.00</option>
+        </select>
+
+        <label for="fecha">Fecha deseada</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <label for="mensaje">Comentarios adicionales</label>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Escribe aquí tus propuestas o accesorio requerido"></textarea>
+
+        <button type="submit" class="boton">Enviar registro</button>
+        <button type="reset">Limpiar formulario</button>
+    </form>
+</section>
+
+
+<footer>
+    <div>Car Wash-FF - 2026
+</footer>
+
+</body>
+</html>
