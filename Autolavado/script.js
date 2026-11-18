@@ -6,9 +6,11 @@ const verPromo = document.getElementById("boton-promocion");
 const calcular = document.getElementById("calcular");
 const limpiar = document.getElementById("limpiar");
 
-verPromo.addEventListener("click", function () {
-   aviso.textContent = "10 % de descuento desde $500 MXN.";
-});
+if (verPromo) {
+    verPromo.addEventListener("click", function () {
+       aviso.textContent = "10 % de descuento desde $500 MXN.";
+    });
+}
 
 function cotizar() {
    const precio = Number(producto.value);
@@ -39,15 +41,19 @@ function cotizar() {
        " | Total: $" + total.toFixed(2) + " MXN";
 }
 
-calcular.addEventListener("click", cotizar);
+if (calcular) {
+    calcular.addEventListener("click", cotizar);
+}
 
-limpiar.addEventListener("click", function () {
-   producto.value = "";
-   cantidad.value = "";
-   resultado.textContent = "";
-   aviso.textContent = "";
-   producto.focus();
-});
+if (limpiar) {
+    limpiar.addEventListener("click", function () {
+       producto.value = "";
+       cantidad.value = "";
+       resultado.textContent = "";
+       aviso.textContent = "";
+       producto.focus();
+    });
+}
 
 const productosCompra = [
    { precio: 50, cantidadId: "cantidad-1", subtotalId: "subtotal-1" },
@@ -75,18 +81,68 @@ function calcularCompra() {
    return total;
 }
 
-document.getElementById("calcular-compra").addEventListener("click", () => {
-   const importe = calcularCompra();
-   if (importe === null) return;
-   let descuento = 0;
-   if (importe >= 1000) {
-       descuento = importe * 0.10;
-   } else {
-       descuento = 0;
-   }
-   const totalPagar = importe - descuento;
-   document.getElementById("importe-compra").textContent = importe.toFixed(2);
-   document.getElementById("descuento-compra").textContent = descuento.toFixed(2);
-   document.getElementById("total-compra").textContent = totalPagar.toFixed(2);
-});
+function claveCantidad(producto) {
+    return "mi-negocio:" + location.pathname + ":" + producto.cantidadId;
+}
+
+function activarGuardadoPedido() {
+    for (const producto of productosCompra) {
+        const campo = document.getElementById(producto.cantidadId);
+        campo.addEventListener("input", () => {
+            const clave = claveCantidad(producto);
+            if (campo.value === "" || !campo.validity.valid) {
+                localStorage.removeItem(clave);
+                return;
+            }
+            localStorage.setItem(clave, campo.value);
+        });
+    }
+}
+
+function actualizarResumenCompra() {
+    const importe = calcularCompra();
+    if (importe === null) return;
+    let descuento = 0;
+    if (importe >= 1000) {
+        descuento = importe * 0.10;
+    } else {
+        descuento = 0;
+    }
+    const totalPagar = importe - descuento;
+    document.getElementById("importe-compra").textContent = importe.toFixed(2);
+    document.getElementById("descuento-compra").textContent = descuento.toFixed(2);
+    document.getElementById("total-compra").textContent = totalPagar.toFixed(2);
+}
+
+function recuperarPedido() {
+    for (const producto of productosCompra) {
+        const campo = document.getElementById(producto.cantidadId);
+        const guardada = localStorage.getItem(claveCantidad(producto));
+        campo.value = guardada ?? "0";
+        if (campo.value === "" || !campo.validity.valid) {
+            campo.value = "0";
+        }
+    }
+    actualizarResumenCompra();
+}
+
+function vaciarPedido() {
+    for (const producto of productosCompra) {
+        localStorage.removeItem(claveCantidad(producto));
+    }
+    recuperarPedido();
+}
+
+const botonCalcularPedido = document.getElementById("calcular-compra");
+const botonVaciarPedido = document.getElementById("vaciar-pedido");
+
+if (botonCalcularPedido) {
+    botonCalcularPedido.addEventListener("click", actualizarResumenCompra);
+    activarGuardadoPedido();
+    recuperarPedido();
+}
+
+if (botonVaciarPedido) {
+    botonVaciarPedido.addEventListener("click", vaciarPedido);
+}
 
