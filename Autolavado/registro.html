@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Car Wash-FF - Registro</title>
+   <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<header>
+   <div class="logo">
+       <div class="logo-cuadro"></div>
+       <h1>CW-FF</h1>
+   </div>
+   <div class="menu">
+       <nav>
+           <a href="index.html">INICIO</a>
+           <a href="servicios.html">SERVICIOS</a>
+           <a href="horarios.html">HORARIOS</a>
+           <a href="accesorios.html">ACCESORIOS</a>
+       </nav>
+   </div>
+</header>
+
+<main>
+   <section style="max-width: 500px; margin: 0 auto;">
+       <h2 style="text-align: center;">Registra tu Cita</h2>
+       <form>
+           <label for="nombre">Nombre completo:</label>
+           <input type="text" id="nombre" required>
+
+           <label for="telefono">Teléfono:</label>
+           <input type="tel" id="telefono" required>
+
+           <label for="vehiculo">Tipo de vehículo:</label>
+           <select id="vehiculo">
+               <option value="auto">Automóvil</option>
+               <option value="camioneta">Camioneta / SUV</option>
+               <option value="moto">Motocicleta</option>
+           </select>
+
+           <label for="comentarios">Comentarios adicionales:</label>
+           <textarea id="comentarios" rows="4"></textarea>
+
+           <button type="submit">Enviar Registro</button>
+       </form>
+   </section>
+</main>
+
+<footer>
+   <div>Car Wash-FF - 2026</div>
+</footer>
+
+</body>
