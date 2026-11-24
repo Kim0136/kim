@@ -217,3 +217,23 @@ footer {
  max-width: 90px; 
  padding: 7px; 
 }
+
+#mensaje-pedido:not(:empty) {
+ padding: 12px;
+ margin-top: 12px;
+ border-radius: 8px;
+}
+
+.pedido-exito { 
+ background: #e6f5ed; 
+ color: #255339; 
+}
+
+.pedido-error { 
+ background: #fff0eb; 
+ color: #a22020; 
+}
+
+
+
+

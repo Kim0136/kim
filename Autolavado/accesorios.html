@@ -1,127 +1,151 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Car Wash-FF - Accesorios</title>
-   <link rel="stylesheet" href="estilos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Wash-FF - Accesorios</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-   <header>
-       <div class="logo">
-           <div class="logo-cuadro"></div>
-           <h1>CW-FF</h1>
-       </div>
-       <div class="menu">
-           <nav>
-               <a href="index.html">INICIO</a>
-               <a href="servicios.html">SERVICIOS</a>
-               <a href="horarios.html">HORARIOS</a>
-               <a href="registro.html">REGISTRO</a>
-           </nav>
-       </div>
-   </header>
+  <header>
+      <div class="logo">
+          <div class="logo-cuadro"></div>
+          <h1>CW-FF</h1>
+      </div>
+      <div class="menu">
+          <nav>
+              <a href="index.html">INICIO</a>
+              <a href="servicios.html">SERVICIOS</a>
+              <a href="horarios.html">HORARIOS</a>
+              <a href="registro.html">REGISTRO</a>
+          </nav>
+      </div>
+  </header>
 
-   <h2 style="text-align: center;">Nuestros productos</h2>
-   
-   <section class="promocion" aria-labelledby="titulo-cotizador">
-       <h2 id="titulo-cotizador">Cotiza tu compra</h2>
-       <label for="producto">Producto</label>
-       <select id="producto">
-           <option value="">Selecciona un producto</option>
-           <option value="50">Aromatizante Little Trees - $50</option>
-           <option value="80">Toalla de microfibra - $80</option>
-           <option value="110">Brillo para llantas en spray - $110</option>
-           <option value="150">Parasol delantero - $150</option>
-           <option value="140">Funda para volante - $140</option>
-           <option value="380">Funda para automovil - $380</option>
-       </select>
-       <label for="cantidad">Cantidad</label>
-       <input id="cantidad" type="number" min="1" max="20" step="1">
-       <button id="boton-promocion" type="button">Ver promoción</button>
-       <button id="calcular" type="button">Calcular</button>
-       <button id="limpiar" type="button">Limpiar</button>
-       <p id="mensaje-promocion" aria-live="polite"></p>
-       <p id="resultado" aria-live="polite"></p>
-   </section>
+  <h2 style="text-align: center;">Nuestros productos</h2>
+ 
+  <section class="promocion" aria-labelledby="titulo-cotizador">
+      <h2 id="titulo-cotizador">Cotiza tu compra</h2>
+      <label for="producto">Producto</label>
+      <select id="producto">
+          <option value="">Selecciona un producto</option>
+          <option value="50">Aromatizante Little Trees - $50</option>
+          <option value="80">Toalla de microfibra - $80</option>
+          <option value="110">Brillo para llantas en spray - $110</option>
+          <option value="150">Parasol delantero - $150</option>
+          <option value="140">Funda para volante - $140</option>
+          <option value="380">Funda para automovil - $380</option>
+      </select>
+      <label for="cantidad">Cantidad</label>
+      <input id="cantidad" type="number" min="1" max="20" step="1">
+      <button id="boton-promocion" type="button">Ver promoción</button>
+      <button id="calcular" type="button">Calcular</button>
+      <button id="limpiar" type="button">Limpiar</button>
+      <p id="mensaje-promocion" aria-live="polite"></p>
+      <p id="resultado" aria-live="polite"></p>
+  </section>
 
-   <div class="contenedor-productos">
-       <article class="producto">
-           <img src="https://www.ecoquimicoscarcare.com.mx/wp-content/uploads/2025/03/45098400-800-auto-630x630.webp" alt="Aromatizante Little Trees">
-           <h3>Aromatizante Little Trees</h3>
-           <p>Pinito con aroma.</p>
-           <p class="precio">Precio: $50.00</p>
-           <label for="cantidad-1">Cantidad:</label>
-           <input type="number" id="cantidad-1" min="0" step="1" value="0">
-           <p>Subtotal: $<span id="subtotal-1">0.00</span></p>
-       </article>
+  <div class="contenedor-productos">
+      <article class="producto">
+          <img src="https://www.ecoquimicoscarcare.com.mx/wp-content/uploads/2025/03/45098400-800-auto-630x630.webp" alt="Aromatizante Little Trees">
+          <h3>Aromatizante Little Trees</h3>
+          <p>Pinito con aroma.</p>
+          <p class="precio">Precio: $50.00</p>
+          <label for="cantidad-1">Cantidad:</label>
+          <input type="number" id="cantidad-1" min="0" step="1" value="0" data-cantidad-pedido data-nombre-producto="Aromatizante Little Trees">
+          <p>Subtotal: $<span id="subtotal-1">0.00</span></p>
+      </article>
 
-       <article class="producto">
-           <img src="https://i5-mx.walmartimages.com/asr/b45d3c12-c106-41f0-aef1-02313c24c8aa.7b967d6a12f6a31c56fb7fceab00d879.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Toalla de microfibra">
-           <h3>Toalla de microfibra</h3>
-           <p>Toalla de 40x40, para no dañar el automovil</p>
-           <p class="precio">Precio: $80.00</p>
-           <label for="cantidad-2">Cantidad:</label>
-           <input type="number" id="cantidad-2" min="0" step="1" value="0">
-           <p>Subtotal: $<span id="subtotal-2">0.00</span></p>
-       </article>
+      <article class="producto">
+          <img src="https://i5-mx.walmartimages.com/asr/b45d3c12-c106-41f0-aef1-02313c24c8aa.7b967d6a12f6a31c56fb7fceab00d879.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Toalla de microfibra">
+          <h3>Toalla de microfibra</h3>
+          <p>Toalla de 40x40, para no dañar el automovil</p>
+          <p class="precio">Precio: $80.00</p>
+          <label for="cantidad-2">Cantidad:</label>
+          <input type="number" id="cantidad-2" min="0" step="1" value="0" data-cantidad-pedido data-nombre-producto="Toalla de microfibra">
+          <p>Subtotal: $<span id="subtotal-2">0.00</span></p>
+      </article>
 
-       <article class="producto">
-           <img src="https://i5.walmartimages.com.mx/samsmx/images/product-images/img_large/981021881l.jpg" alt="Brillo para llantas en spray">
-           <h3>Brillo para llantas en spray</h3>
-           <p>Lata de spray de 540ml para que las llantas esten brillosas</p>
-           <p class="precio">Precio: $110.00</p>
-           <label for="cantidad-3">Cantidad:</label>
-           <input type="number" id="cantidad-3" min="0" step="1" value="0">
-           <p>Subtotal: $<span id="subtotal-3">0.00</span></p>
-       </article>
+      <article class="producto">
+          <img src="https://i5.walmartimages.com.mx/samsmx/images/product-images/img_large/981021881l.jpg" alt="Brillo para llantas en spray">
+          <h3>Brillo para llantas en spray</h3>
+          <p>Lata de spray de 540ml para que las llantas esten brillosas</p>
+          <p class="precio">Precio: $110.00</p>
+          <label for="cantidad-3">Cantidad:</label>
+          <input type="number" id="cantidad-3" min="0" step="1" value="0" data-cantidad-pedido data-nombre-producto="Brillo para llantas en spray">
+          <p>Subtotal: $<span id="subtotal-3">0.00</span></p>
+      </article>
 
-       <article class="producto">
-           <img src="https://i5-mx.walmartimages.com/asr/c85f061e-7650-4ad9-b8ba-a76d98470ee8.b02583b7860784370509c6dac70bc038.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Parasol delantero">
-           <h3>Parasol delantero</h3>
-           <p>Le queda a todo tipo de automovil</p>
-           <p class="precio">Precio: $150.00</p>
-           <label for="cantidad-4">Cantidad:</label>
-           <input type="number" id="cantidad-4" min="0" step="1" value="0">
-           <p>Subtotal: $<span id="subtotal-4">0.00</span></p>
-       </article>
+      <article class="producto">
+          <img src="https://i5-mx.walmartimages.com/asr/c85f061e-7650-4ad9-b8ba-a76d98470ee8.b02583b7860784370509c6dac70bc038.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Parasol delantero">
+          <h3>Parasol delantero</h3>
+          <p>Le queda a todo tipo de automovil</p>
+          <p class="precio">Precio: $150.00</p>
+          <label for="cantidad-4">Cantidad:</label>
+          <input type="number" id="cantidad-4" min="0" step="1" value="0" data-cantidad-pedido data-nombre-producto="Parasol delantero">
+          <p>Subtotal: $<span id="subtotal-4">0.00</span></p>
+      </article>
 
-       <article class="producto">
-           <img src="https://http2.mlstatic.com/D_NQ_NP_973263-MLM80310421901_102024-O.webp" alt="Funda para volante">
-           <h3>Funda para volante</h3>
-           <p>Le queda a todo tipo de automovil</p>
-           <p class="precio">Precio: $140.00</p>
-           <label for="cantidad-5">Cantidad:</label>
-           <input type="number" id="cantidad-5" min="0" step="1" value="0">
-           <p>Subtotal: $<span id="subtotal-5">0.00</span></p>
-       </article>
+      <article class="producto">
+          <img src="https://http2.mlstatic.com/D_NQ_NP_973263-MLM80310421901_102024-O.webp" alt="Funda para volante">
+          <h3>Funda para volante</h3>
+          <p>Le queda a todo tipo de automovil</p>
+          <p class="precio">Precio: $140.00</p>
+          <label for="cantidad-5">Cantidad:</label>
+          <input type="number" id="cantidad-5" min="0" step="1" value="0" data-cantidad-pedido data-nombre-producto="Funda para volante">
+          <p>Subtotal: $<span id="subtotal-5">0.00</span></p>
+      </article>
 
-       <article class="producto">
-           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0I4ETE9l1ND6TnYokLy76mIKAU18R4g3IQQldCwrrBg&s=10" alt="Funda para automovil">
-           <h3>Funda para automovil</h3>
-           <p>Le queda a todo tipo de automovil</p>
-           <p class="precio">Precio: $380.00</p>
-           <label for="cantidad-6">Cantidad:</label>
-           <input type="number" id="cantidad-6" min="0" step="1" value="0">
-           <p>Subtotal: $<span id="subtotal-6">0.00</span></p>
-       </article>
-   </div>
+      <article class="producto">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0I4ETE9l1ND6TnYokLy76mIKAU18R4g3IQQldCwrrBg&s=10" alt="Funda para automovil">
+          <h3>Funda para automovil</h3>
+          <p>Le queda a todo tipo de automovil</p>
+          <p class="precio">Precio: $380.00</p>
+          <label for="cantidad-6">Cantidad:</label>
+          <input type="number" id="cantidad-6" min="0" step="1" value="0" data-cantidad-pedido data-nombre-producto="Funda para automovil">
+          <p>Subtotal: $<span id="subtotal-6">0.00</span></p>
+      </article>
+  </div>
 
-   <section class="resumen-compra">
-       <h2>Resumen de mi compra</h2>
-       <button type="button" id="calcular-compra">Calcular compra</button>
-       <button type="button" id="vaciar-pedido">Vaciar pedido</button>
-       <p>Importe: $<span id="importe-compra">0.00</span></p>
-       <p>Descuento: $<span id="descuento-compra">0.00</span></p>
-       <p>Total a pagar: $<span id="total-compra">0.00</span></p>
-   </section>
+  <section class="resumen-compra">
+      <h2>Resumen de mi compra</h2>
+      <button type="button" id="calcular-compra">Calcular compra</button>
+      <button type="button" id="vaciar-pedido">Vaciar pedido</button>
+      <p>Importe: $<span id="importe-compra">0.00</span></p>
+      <p>Descuento: $<span id="descuento-compra">0.00</span></p>
+      <p>Total a pagar: $<span id="total-final">0.00</span></p>
+  </section>
 
-   <footer>
-       <div>Car Wash-FF - 2026</div>
-   </footer>
+  <section aria-labelledby="titulo-confirmacion">
+      <h2 id="titulo-confirmacion">Confirma tu pedido</h2>
+      <form id="form-confirmar">
+          <label for="cliente-pedido">Nombre del cliente</label>
+          <input id="cliente-pedido" type="text" required maxlength="60">
 
-   <script src="script.js" defer></script>
+          <label for="direccion-pedido">Dirección de entrega</label>
+          <input id="direccion-pedido" type="text" required maxlength="100">
+
+          <label for="fecha-pedido">Fecha de entrega</label>
+          <input id="fecha-pedido" type="date" required>
+
+          <label for="horario-pedido">Horario de entrega</label>
+          <select id="horario-pedido" required>
+              <option value="">Elige un horario</option>
+              <option value="10:00">10:00</option>
+              <option value="12:00">12:00</option>
+              <option value="16:00">16:00</option>
+          </select>
+
+          <button type="submit">Confirmar pedido</button>
+      </form>
+      <div id="mensaje-pedido" role="status"></div>
+  </section>
+
+  <footer>
+      <div>Car Wash-FF - 2026</div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>

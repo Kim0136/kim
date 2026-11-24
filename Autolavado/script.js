@@ -7,142 +7,216 @@ const calcular = document.getElementById("calcular");
 const limpiar = document.getElementById("limpiar");
 
 if (verPromo) {
-    verPromo.addEventListener("click", function () {
-       aviso.textContent = "10 % de descuento desde $500 MXN.";
-    });
+   verPromo.addEventListener("click", function () {
+      aviso.textContent = "10 % de descuento desde $500 MXN.";
+   });
 }
 
 function cotizar() {
-   const precio = Number(producto.value);
-   const unidades = Number(cantidad.value);
+  const precio = Number(producto.value);
+  const unidades = Number(cantidad.value);
 
-   if (producto.value === "") {
-       resultado.textContent = "Selecciona un producto.";
-       return;
-   }
+  if (producto.value === "") {
+      resultado.textContent = "Selecciona un producto.";
+      return;
+  }
 
-   if (!Number.isInteger(unidades) || unidades < 1 || unidades > 20) {
-       resultado.textContent = "Escribe un entero entre 1 y 20.";
-       return;
-   }
+  if (!Number.isInteger(unidades) || unidades < 1 || unidades > 20) {
+      resultado.textContent = "Escribe un entero entre 1 y 20.";
+      return;
+  }
 
-   const subtotal = precio * unidades;
-   let descuento = 0;
+  const subtotal = precio * unidades;
+  let descuento = 0;
 
-   if (subtotal >= 500) {
-       descuento = subtotal * 0.10;
-   }
+  if (subtotal >= 500) {
+      descuento = subtotal * 0.10;
+  }
 
-   const total = subtotal - descuento;
+  const total = subtotal - descuento;
 
-   resultado.textContent =
-       "Subtotal: $" + subtotal.toFixed(2) +
-       " | Descuento: $" + descuento.toFixed(2) +
-       " | Total: $" + total.toFixed(2) + " MXN";
+  resultado.textContent =
+      "Subtotal: $" + subtotal.toFixed(2) +
+      " | Descuento: $" + descuento.toFixed(2) +
+      " | Total: $" + total.toFixed(2) + " MXN";
 }
 
 if (calcular) {
-    calcular.addEventListener("click", cotizar);
+   calcular.addEventListener("click", cotizar);
 }
 
 if (limpiar) {
-    limpiar.addEventListener("click", function () {
-       producto.value = "";
-       cantidad.value = "";
-       resultado.textContent = "";
-       aviso.textContent = "";
-       producto.focus();
-    });
+   limpiar.addEventListener("click", function () {
+      producto.value = "";
+      cantidad.value = "";
+      resultado.textContent = "";
+      aviso.textContent = "";
+      producto.focus();
+   });
 }
 
 const productosCompra = [
-   { precio: 50, cantidadId: "cantidad-1", subtotalId: "subtotal-1" },
-   { precio: 80, cantidadId: "cantidad-2", subtotalId: "subtotal-2" },
-   { precio: 110, cantidadId: "cantidad-3", subtotalId: "subtotal-3" },
-   { precio: 150, cantidadId: "cantidad-4", subtotalId: "subtotal-4" },
-   { precio: 140, cantidadId: "cantidad-5", subtotalId: "subtotal-5" },
-   { precio: 380, cantidadId: "cantidad-6", subtotalId: "subtotal-6" }
+  { precio: 50, cantidadId: "cantidad-1", subtotalId: "subtotal-1" },
+  { precio: 80, cantidadId: "cantidad-2", subtotalId: "subtotal-2" },
+  { precio: 110, cantidadId: "cantidad-3", subtotalId: "subtotal-3" },
+  { precio: 150, cantidadId: "cantidad-4", subtotalId: "subtotal-4" },
+  { precio: 140, cantidadId: "cantidad-5", subtotalId: "subtotal-5" },
+  { precio: 380, cantidadId: "cantidad-6", subtotalId: "subtotal-6" }
 ];
 
 function calcularCompra() {
-   let total = 0;
-   for (const producto of productosCompra) {
-       const campo = document.getElementById(producto.cantidadId);
-       const cantidad = Number(campo.value);
-       if (campo.value.trim() === "" || !Number.isInteger(cantidad) || cantidad < 0) {
-           alert("Escribe cantidades enteras iguales o mayores que cero.");
-           campo.focus();
-           return null;
-       }
-       const subtotal = producto.precio * cantidad;
-       document.getElementById(producto.subtotalId).textContent = subtotal.toFixed(2);
-       total += subtotal;
-   }
-   return total;
+  let total = 0;
+  for (const producto of productosCompra) {
+      const campo = document.getElementById(producto.cantidadId);
+      const cantidad = Number(campo.value);
+      if (campo.value.trim() === "" || !Number.isInteger(cantidad) || cantidad < 0) {
+          alert("Escribe cantidades enteras iguales o mayores que cero.");
+          campo.focus();
+          return null;
+      }
+      const subtotal = producto.precio * cantidad;
+      document.getElementById(producto.subtotalId).textContent = subtotal.toFixed(2);
+      total += subtotal;
+  }
+  return total;
 }
 
 function claveCantidad(producto) {
-    return "mi-negocio:" + location.pathname + ":" + producto.cantidadId;
+   return "mi-negocio:" + location.pathname + ":" + producto.cantidadId;
 }
 
 function activarGuardadoPedido() {
-    for (const producto of productosCompra) {
-        const campo = document.getElementById(producto.cantidadId);
-        campo.addEventListener("input", () => {
-            const clave = claveCantidad(producto);
-            if (campo.value === "" || !campo.validity.valid) {
-                localStorage.removeItem(clave);
-                return;
-            }
-            localStorage.setItem(clave, campo.value);
-        });
-    }
+   for (const producto of productosCompra) {
+       const campo = document.getElementById(producto.cantidadId);
+       campo.addEventListener("input", () => {
+           const clave = claveCantidad(producto);
+           if (campo.value === "" || !campo.validity.valid) {
+               localStorage.removeItem(clave);
+               return;
+           }
+           localStorage.setItem(clave, campo.value);
+       });
+   }
 }
 
 function actualizarResumenCompra() {
-    const importe = calcularCompra();
-    if (importe === null) return;
-    let descuento = 0;
-    if (importe >= 1000) {
-        descuento = importe * 0.10;
-    } else {
-        descuento = 0;
-    }
-    const totalPagar = importe - descuento;
-    document.getElementById("importe-compra").textContent = importe.toFixed(2);
-    document.getElementById("descuento-compra").textContent = descuento.toFixed(2);
-    document.getElementById("total-compra").textContent = totalPagar.toFixed(2);
+   const importe = calcularCompra();
+   if (importe === null) return;
+   let descuento = 0;
+   if (importe >= 1000) {
+       descuento = importe * 0.10;
+   } else {
+       descuento = 0;
+   }
+   const totalPagar = importe - descuento;
+   document.getElementById("importe-compra").textContent = importe.toFixed(2);
+   document.getElementById("descuento-compra").textContent = descuento.toFixed(2);
+   document.getElementById("total-final").textContent = totalPagar.toFixed(2);
 }
 
 function recuperarPedido() {
-    for (const producto of productosCompra) {
-        const campo = document.getElementById(producto.cantidadId);
-        const guardada = localStorage.getItem(claveCantidad(producto));
-        campo.value = guardada ?? "0";
-        if (campo.value === "" || !campo.validity.valid) {
-            campo.value = "0";
-        }
-    }
-    actualizarResumenCompra();
+   for (const producto of productosCompra) {
+       const campo = document.getElementById(producto.cantidadId);
+       const guardada = localStorage.getItem(claveCantidad(producto));
+       campo.value = guardada ?? "0";
+       if (campo.value === "" || !campo.validity.valid) {
+           campo.value = "0";
+       }
+   }
+   actualizarResumenCompra();
 }
 
 function vaciarPedido() {
-    for (const producto of productosCompra) {
-        localStorage.removeItem(claveCantidad(producto));
-    }
-    recuperarPedido();
+   for (const producto of productosCompra) {
+       localStorage.removeItem(claveCantidad(producto));
+   }
+   recuperarPedido();
 }
 
 const botonCalcularPedido = document.getElementById("calcular-compra");
 const botonVaciarPedido = document.getElementById("vaciar-pedido");
 
 if (botonCalcularPedido) {
-    botonCalcularPedido.addEventListener("click", actualizarResumenCompra);
-    activarGuardadoPedido();
-    recuperarPedido();
+   botonCalcularPedido.addEventListener("click", actualizarResumenCompra);
+   activarGuardadoPedido();
+   recuperarPedido();
 }
 
 if (botonVaciarPedido) {
-    botonVaciarPedido.addEventListener("click", vaciarPedido);
+   botonVaciarPedido.addEventListener("click", vaciarPedido);
 }
 
+const formularioPedido = document.getElementById("form-confirmar");
+const mensajePedido = document.getElementById("mensaje-pedido");
+
+function mostrarMensajePedido(texto, estado) {
+   mensajePedido.textContent = texto;
+   mensajePedido.className = estado;
+}
+
+function mostrarConfirmacionPedido(nombre, direccion, fecha, horario, elegidos) {
+   actualizarResumenCompra();
+   const total = document.getElementById("total-final").textContent.trim();
+   mensajePedido.textContent = "";
+  
+   const textoExito = document.createElement("p");
+   textoExito.textContent = nombre + ", tu pedido se confirmó para entrega en " + direccion + " el día " + fecha + " a las " + horario + " hrs.";
+   mensajePedido.append(textoExito);
+
+   const lista = document.createElement("ul");
+   for (const campo of elegidos) {
+       const renglon = document.createElement("li");
+       renglon.textContent = campo.value + " x " + campo.dataset.nombreProducto;
+       lista.append(renglon);
+   }
+   const importe = document.createElement("strong");
+   importe.textContent = "Total a pagar: $" + total;
+   mensajePedido.append(lista, importe);
+   mensajePedido.className = "pedido-exito";
+}
+
+if (formularioPedido) {
+   formularioPedido.addEventListener("submit", function (evento) {
+       evento.preventDefault();
+       const cliente = document.getElementById("cliente-pedido");
+       const nombre = cliente.value.trim();
+       const campoDireccion = document.getElementById("direccion-pedido");
+       const direccion = campoDireccion.value.trim();
+       const fecha = document.getElementById("fecha-pedido").value;
+       const horario = document.getElementById("horario-pedido").value;
+       const campos = Array.from(document.querySelectorAll("[data-cantidad-pedido]"));
+
+       if (!nombre) {
+           mostrarMensajePedido("Escribe tu nombre.", "pedido-error");
+           cliente.focus();
+           return;
+       }
+
+       if (!direccion) {
+           mostrarMensajePedido("Escribe tu dirección de entrega.", "pedido-error");
+           campoDireccion.focus();
+           return;
+       }
+
+       if (!fecha) {
+           mostrarMensajePedido("Selecciona una fecha de entrega.", "pedido-error");
+           document.getElementById("fecha-pedido").focus();
+           return;
+       }
+
+       const invalido = campos.find(campo => !campo.validity.valid);
+       if (invalido) {
+           mostrarMensajePedido("Revisa las cantidades.", "pedido-error");
+           invalido.focus();
+           return;
+       }
+
+       const elegidos = campos.filter(campo => Number(campo.value) > 0);
+       if (elegidos.length === 0) {
+           mostrarMensajePedido("Agrega al menos un producto.", "pedido-error");
+           return;
+       }
+
+       mostrarConfirmacionPedido(nombre, direccion, fecha, horario, elegidos);
+   });
+}
